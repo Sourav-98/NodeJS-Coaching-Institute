@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-mongodb",
+  "version": "1.0.0",
+  "description": "A NodeJS MongoDB Tutorial Repo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sourav-98/NodeJS-MongoDB.git"
+  },
+  "author": "Sourav Ray Chaudhuri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sourav-98/NodeJS-MongoDB/issues"
+  },
+  "homepage": "https://github.com/Sourav-98/NodeJS-MongoDB#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.3",
+    "mongoose": "^5.9.1",
+    "nodemon": "^2.0.2"
+  }
+}
