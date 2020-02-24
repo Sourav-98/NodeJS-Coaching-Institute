@@ -3,6 +3,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const path = require('path');
 
+const app = express();
 //routes import
 const AdminRoutes = require('./routes/adminRoutes');
 const StudentRoutes = require('./routes/studentRoutes');
@@ -14,18 +15,7 @@ const ObjectId = mongoose.Types.ObjectId;
 //model imports
 const Admin = require('./models/adminModel');
 const Student = require('./models/studentModel');
-
-
-// an instance of expressjs
-const app = express();
-
-// app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-// app.use('/admin', AdminRoutes);
-// app.use('/student', StudentRoutes);
-app.use('/', DefaultRoutes);
-
+const Course = require('./models/courseModel');
 
 mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
@@ -35,6 +25,21 @@ mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUn
 .catch((err)=>{
     console.log('Error in connecting to database!');
 });
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+app.use('/', DefaultRoutes);
+
+// Adding a new course
+// Course.create({course_name: "MongoDB Master Class", course_type:"Training", lec_hours: 35, max_seats: 25, price: 400}, (err, callback)=>{
+//     if(err){
+//         throw err;
+//     }
+//     else{
+//         console.log('Entry Added!');
+//     }
+// });
 
 
 // Admin.create({name: "Test Admin 1", user_name: "erjbnvenisd", email_id:"testemevsfail12@abc.com",  password: "Test@123"}, (err, callback)=>{
@@ -51,22 +56,45 @@ mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUn
 
 // Student.create(
 //     {
-//         name: "Test Student 1", 
-//         email_id: "teststudent@node.com", 
-//         password: "Test@12345", 
-//         enrolled_courses: [{course_id: 2342}, {course_id: 9372}]
+//         name: "Test Student 2", 
+//         email_id: "teststudent123@node.com",
+//         phone: "3829349384", 
+//         password: "Test@12345"
 //     },
-//     (err)=>{
+//     (err, callback)=>{
 //         if(err) throw err;
 //         console.log('Student Entered');
 //     }
 // );
 
-Student.findOne({_id: '5e52c761e26f617321c01b7b'}, (err, student)=>{
+// On click of Add to Cart button - add the 
+
+var course_id = '5e53cfc224d2557f09662e21';
+var student_id = '5e53e044eff8cd8067c0dfb7';
+Student.findById(student_id, (err, student)=>{
     if(err){
         console.log(err);
     }
-    console.log(typeof ObjectId.toString(student._id));
+    else{
+        console.log(student);
+        var cart = student.in_cart;
+        if(!cart.includes(course_id)){
+            cart.push('5e53cfc224d2557f09662e21');
+            Student.updateOne({_id: '5e53e044eff8cd8067c0dfb7'}, {in_cart: cart}, (err, callback)=>{
+                if(err){
+                    throw err;
+                }
+                else{
+                    console.log(callback);
+                    console.log('Added To Cart');
+                }
+            });
+        }
+        else{
+            console.log('Course Already Added!');
+        }
+    }
 });
+
 
 

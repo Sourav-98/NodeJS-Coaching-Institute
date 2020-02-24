@@ -18,5 +18,13 @@ module.exports = mongoose.model('Student', new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    in_cart:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
+    enrolled_courses:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    }]
 }));
