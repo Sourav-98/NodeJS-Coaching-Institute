@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-mongodb",
+  "name": "nodejs-coaching-institute",
   "version": "1.0.0",
-  "description": "A NodeJS MongoDB Tutorial Repo",
+  "description": "Coaching Institute Project",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,12 +12,13 @@
     "url": "git+https://github.com/Sourav-98/NodeJS-Coaching-Institute.git"
   },
   "author": "Sourav Ray Chaudhuri",
-  "license": "ISC",
+  "license": "GNU-GPL",
   "bugs": {
     "url": "https://github.com/Sourav-98/NodeJS-Coaching-Institute.git/issues"
   },
   "homepage": "https://github.com/Sourav-98/NodeJS-Coaching-Institute.git#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
@@ -25,6 +26,7 @@
     "jquery": "^3.4.1",
     "mongodb": "^3.5.3",
     "mongoose": "^5.9.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "popper.js": "^1.16.1"
   }
 }
