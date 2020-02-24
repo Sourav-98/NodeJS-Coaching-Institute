@@ -112,12 +112,21 @@ var student_id = '5e53e044eff8cd8067c0dfb7';
 
 // find list of students with the particular course in cart
 
-Student.find({in_cart: '5e53cf4ef44cb67ef460cccf'}, (err, callback)=>{
+// Student.find({in_cart: '5e53cf4ef44cb67ef460cccf'}, (err, callback)=>{
+//     if(err) throw err;
+//     else{
+//         console.log(callback);
+//     }
+// });
+
+// find the course details from the student cart info
+
+Student.findById(student_id, (err, student)=>{
     if(err) throw err;
     else{
-        console.log(callback);
+        Course.find({_id: student.in_cart}, (err, callback)=>{
+            console.log(callback);
+        });
     }
 });
-
-
 
