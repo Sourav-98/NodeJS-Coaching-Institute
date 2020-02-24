@@ -4,10 +4,24 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
+
 //routes import
 const AdminRoutes = require('./routes/adminRoutes');
 const StudentRoutes = require('./routes/studentRoutes');
 const DefaultRoutes = require('./routes/defaultRoutes');
+
+
+/*
+
+Routes Needed
+
+/               -   Home
+/login          -   Student Login
+/admin-login    -   Admin Login
+/student/home   -   Student Home Page
+/student/  
+
+*/
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -71,28 +85,37 @@ app.use('/', DefaultRoutes);
 
 var course_id = '5e53cfc224d2557f09662e21';
 var student_id = '5e53e044eff8cd8067c0dfb7';
-Student.findById(student_id, (err, student)=>{
-    if(err){
-        console.log(err);
-    }
+// Student.findById(student_id, (err, student)=>{
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log(student);
+//         var cart = student.in_cart;
+//         if(!cart.includes(course_id)){
+//             cart.push('5e53cfc224d2557f09662e21');
+//             Student.updateOne({_id: '5e53e044eff8cd8067c0dfb7'}, {in_cart: cart}, (err, callback)=>{
+//                 if(err){
+//                     throw err;
+//                 }
+//                 else{
+//                     console.log(callback);
+//                     console.log('Added To Cart');
+//                 }
+//             });
+//         }
+//         else{
+//             console.log('Course Already Added!');
+//         }
+//     }
+// });
+
+// find list of students with the particular course in cart
+
+Student.find({in_cart: '5e53cf4ef44cb67ef460cccf'}, (err, callback)=>{
+    if(err) throw err;
     else{
-        console.log(student);
-        var cart = student.in_cart;
-        if(!cart.includes(course_id)){
-            cart.push('5e53cfc224d2557f09662e21');
-            Student.updateOne({_id: '5e53e044eff8cd8067c0dfb7'}, {in_cart: cart}, (err, callback)=>{
-                if(err){
-                    throw err;
-                }
-                else{
-                    console.log(callback);
-                    console.log('Added To Cart');
-                }
-            });
-        }
-        else{
-            console.log('Course Already Added!');
-        }
+        console.log(callback);
     }
 });
 
