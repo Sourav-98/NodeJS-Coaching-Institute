@@ -116,7 +116,10 @@ mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net
     console.log('Error in connecting to database!');
 });
 
-//commentsq
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+app.use('/', DefaultRoutes);
 
 // Adding a new course
 // Course.create({course_name: "MongoDB Master Class", course_type:"Training", lec_hours: 35, max_seats: 25, price: 400}, (err, callback)=>{
