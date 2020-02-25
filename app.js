@@ -109,7 +109,7 @@ mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net
 
 
     
-    app.listen(9000);
+
 })
 .catch((err)=>{
     
@@ -120,7 +120,8 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use('/', DefaultRoutes);
-
+app.use('/admin', AdminRoutes);
+app.listen(9000);
 // Adding a new course
 // Course.create({course_name: "MongoDB Master Class", course_type:"Training", lec_hours: 35, max_seats: 25, price: 400}, (err, callback)=>{
 //     if(err){
