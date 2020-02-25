@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
-const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -11,23 +11,29 @@ const StudentRoutes = require('./routes/studentRoutes');
 const DefaultRoutes = require('./routes/defaultRoutes');
 
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use('/', DefaultRoutes);
+
 /*
 
 Routes Needed
 
 /               -   Home
 /login          -   Student Login
+/signup
 /admin-login    -   Admin Login
+/logout
+
 /student/home   -   Student Home Page
-/student/  
+/student/courses
 
 
 /admin/home
 /admin/add-course
 /admin/manage
 */
-
-const ObjectId = mongoose.Types.ObjectId;
 
 // This is Sourav Comment
 
@@ -106,13 +112,10 @@ mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net
     app.listen(9000);
 })
 .catch((err)=>{
+    
     console.log('Error in connecting to database!');
 });
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-app.use('/', DefaultRoutes);
 //commentsq
 
 // Adding a new course
