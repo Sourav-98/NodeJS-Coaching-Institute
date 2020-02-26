@@ -46,8 +46,6 @@ mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb
 .then(()=>{
     console.log('Connected to Database!');
 
-   
-
 // Admin.create({name: "Test Admin 1", user_name: "erjbnvenisd", email_id:"testemevsfail12@abc.com",  password: "Test@123"}, (err, callback)=>{
 //     if(err){
 //         console.log('Error in creating entry');
