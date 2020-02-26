@@ -42,7 +42,7 @@ const Admin = require('./models/adminModel');
 const Student = require('./models/studentModel');
 const Course = require('./models/courseModel');
 
-mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
     console.log('Connected to Database!');
 
@@ -57,7 +57,6 @@ mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net
 //         console.log(callback);
 //         console.log('Entry Added!');
 //     }
-    
 // });
 
 // Course.create({course_name: "NodeJS Master Class", course_type:"Training", lec_hours: 41, max_seats: 25, price: 450}, (err, callback)=>{
