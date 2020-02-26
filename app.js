@@ -14,6 +14,7 @@ const DefaultRoutes = require('./routes/defaultRoutes');
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/student', StudentRoutes);
 app.use('/', DefaultRoutes);
 
 /*
@@ -27,12 +28,13 @@ Routes Needed
 /logout
 
 /student/home   -   Student Home Page
-/student/courses
-
+/student/courses - List of Courses
+/student/courses?coursename=<course_id> - Info of a particular course
 
 /admin/home
 /admin/add-course
-/admin/manage
+/admin/manage - a master manage window
+/admin/manage?coursename
 */
 
 // This is Sourav Comment
@@ -104,12 +106,45 @@ mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb
 // );
 
 
+// var course_id = '5e55ed7200faa8085092f6f0';
+// var student_id = '5e55ed7200faa8085092f6f2';
+// Student.findById(student_id, (err, student)=>{
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log(student);
+//         var updated_cart = student.in_cart;
+//         if(!updated_cart.includes(course_id)){
+//             updated_cart.push(course_id);
+//             Student.updateOne({_id: student_id}, {in_cart: updated_cart}, (err, callback)=>{
+//                 if(err){
+//                     throw err;
+//                 }
+//                 else{
+//                     console.log(callback);
+//                     console.log('Added To Cart');
+//                 }
+//             });
+//         }
+//         else{
+//             console.log('Course Already Added!');
+//         }
+//     }
+// });
 
+// var student_id = '5e55ed7200faa8085092f6f2';
+
+// Student.findById(student_id, (err, student)=>{
+//     var cart_items = student.in_cart;
+//     Course.find({_id: cart_items}, (err, items)=>{
+//         console.log(items);
+//     });
+// });
     
 
 })
 .catch((err)=>{
-    
     console.log('Error in connecting to database!');
 });
 

@@ -6,6 +6,9 @@ module.exports = mongoose.model('Course', new Schema({
         type: String,
         unique: true,
     },
+    course_author:{
+        type: String,
+    },
     course_type:{
         type: String,
         required: true
