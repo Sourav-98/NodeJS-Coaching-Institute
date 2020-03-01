@@ -15,7 +15,7 @@ const coverImageStorage = multer.diskStorage({
 
 const adminController = require('./../controllers/adminController');
 
-routes.use(express.static(path.join(__dirname, '..', 'public')));
+routes.use(express.static(path.join(__dirname, '..')));
 
 routes.get('/add-course', adminController.getAddCourse);
 

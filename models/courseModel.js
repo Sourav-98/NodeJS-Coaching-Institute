@@ -21,5 +21,9 @@ module.exports = mongoose.model('Course', new Schema({
     price:{
         type: Number,
         required: true
+    },
+    image_url:{
+        type: String,
+        required: true
     }
 }));

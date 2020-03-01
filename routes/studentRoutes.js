@@ -6,7 +6,7 @@ const path = require('path');
 const studentController = require('./../controllers/studentController');
 // const authController = require('./../controllers/auth/authController');
 
-routes.use(express.static(path.join(__dirname, '..', 'public')));
+routes.use(express.static(path.join(__dirname, '..')));
 
 routes.get('/home', studentController.getHomePage);
 routes.get('/courses', studentController.getCoursesPage);
