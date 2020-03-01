@@ -1,3 +1,10 @@
+@font-face { font-family: Delicious; src: url('./../fonts/pt-sans/PTSans-Regular.ttf'); } 
+@font-face { font-family: Delicious; font-weight: bold; src: url('./../fonts/pt-sans/PTSans-Bold.ttf');}
+
+body{
+    font-family: 'PT Sans';
+}
+
 .container-fluid{
     margin-top: 70px;
 }

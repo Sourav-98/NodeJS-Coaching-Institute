@@ -8,7 +8,7 @@
             <div class="form-box">
                 <h4>ADD NEW COURSE</h4>
                 <hr>
-                <form style="text-align: left;" method="POST" action="">
+                <form style="text-align: left;" method="POST" action="/admin/add-course" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Enter Course Name:</label>
                         <input type="text" class="form-control" name="course_name" placeholder="Course Name">
@@ -28,23 +28,41 @@
                                 <input type="radio" id="course_type-2" name="course_type" value="Internship" class="custom-control-input">
                                 <label class="custom-control-label" for="course_type-2">Internship</label>
                             </div>
+                            
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Total Course Duration:</label>
                                 <input type="text" class="form-control" name="lec_hours" placeholder="In Hours">
                             </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Price:</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">&#8377</div>
+                                    </div>
+                                    <input type="text" name="price" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
                             <div class="form-group">
                                 <label>Total Seats Available:</label>
                                 <input type="text" class="form-control" name="max_seats" placeholder="Max. Seats">
                             </div>
                         </div>
+
                     </div>
                     <div class="form-group">
                         <label>Choose a Cover Image:</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="coverImage" id="coverImage">
-                            <label class="custom-file-label" style="text-align: left;" for="coverImage">Choose File...</label>
+                            <label class="custom-file-label text-muted" style="text-align: left;" for="coverImage"><i class="far fa-image"></i></label>
                         </div>
                     </div>
                     <div class="form-group">
