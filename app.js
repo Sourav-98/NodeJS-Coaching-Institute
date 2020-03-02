@@ -2,20 +2,30 @@ const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
 //routes import
-const AdminRoutes = require('./routes/adminRoutes');
-const StudentRoutes = require('./routes/studentRoutes');
-const DefaultRoutes = require('./routes/defaultRoutes');
-
+// const AdminRoutes = require('./routes/adminRoutes');
+// const StudentRoutes = require('./routes/studentRoutes');
+// const DefaultRoutes = require('./routes/defaultRoutes');
+const AuthRoutes = require('./routes/authRoutes');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/student', StudentRoutes);
-app.use('/', DefaultRoutes);
+// app.use('/student', StudentRoutes);
+app.use('/', AuthRoutes);
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res)=>{
+    res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});
+});
+app.use((req, res)=>{
+    res.render('includes/404', {pageTitle: "404", pagePath:"404"})
+});
+
+app.listen(9000);
 
 /*
 
@@ -36,8 +46,6 @@ Routes Needed
 /admin/manage - a master manage window
 /admin/manage?coursename
 */
-
-// This is Sourav Comment
 
 //model imports
 const Admin = require('./models/adminModel');
@@ -148,12 +156,7 @@ mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb
     console.log('Error in connecting to database!');
 });
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
 
-app.use('/', DefaultRoutes);
-app.use('/admin', AdminRoutes);
-app.listen(9000);
 // Adding a new course
 // Course.create({course_name: "MongoDB Master Class", course_type:"Training", lec_hours: 35, max_seats: 25, price: 400}, (err, callback)=>{
 //     if(err){

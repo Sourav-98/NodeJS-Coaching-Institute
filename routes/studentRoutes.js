@@ -10,5 +10,6 @@ routes.use(express.static(path.join(__dirname, '..')));
 
 routes.get('/home', studentController.getHomePage);
 routes.get('/courses', studentController.getCoursesPage);
+routes.get('/cart', studentController.getCartPage);
 
 module.exports = routes;
