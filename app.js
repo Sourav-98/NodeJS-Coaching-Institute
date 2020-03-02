@@ -2,19 +2,30 @@ const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
 //routes import
-const AdminRoutes = require('./routes/adminRoutes');
-const StudentRoutes = require('./routes/studentRoutes');
-const DefaultRoutes = require('./routes/defaultRoutes');
-
+// const AdminRoutes = require('./routes/adminRoutes');
+// const StudentRoutes = require('./routes/studentRoutes');
+// const DefaultRoutes = require('./routes/defaultRoutes');
+const AuthRoutes = require('./routes/authRoutes');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/', DefaultRoutes);
+// app.use('/student', StudentRoutes);
+app.use('/', AuthRoutes);
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res)=>{
+    res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});
+});
+app.use((req, res)=>{
+    res.render('includes/404', {pageTitle: "404", pagePath:"404"})
+});
+
+app.listen(9000);
 
 /*
 
@@ -27,26 +38,23 @@ Routes Needed
 /logout
 
 /student/home   -   Student Home Page
-/student/courses
-
+/student/courses - List of Courses
+/student/courses?coursename=<course_id> - Info of a particular course
 
 /admin/home
 /admin/add-course
-/admin/manage
+/admin/manage - a master manage window
+/admin/manage?coursename
 */
-
-// This is Sourav Comment
 
 //model imports
 const Admin = require('./models/adminModel');
 const Student = require('./models/studentModel');
 const Course = require('./models/courseModel');
 
-mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
     console.log('Connected to Database!');
-
-   
 
 // Admin.create({name: "Test Admin 1", user_name: "erjbnvenisd", email_id:"testemevsfail12@abc.com",  password: "Test@123"}, (err, callback)=>{
 //     if(err){
@@ -57,7 +65,6 @@ mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net
 //         console.log(callback);
 //         console.log('Entry Added!');
 //     }
-    
 // });
 
 // Course.create({course_name: "NodeJS Master Class", course_type:"Training", lec_hours: 41, max_seats: 25, price: 450}, (err, callback)=>{
@@ -107,19 +114,48 @@ mongoose.connect('mongodb+srv://Sourav_98:Sourav1998$@cluster0-12p2n.mongodb.net
 // );
 
 
+// var course_id = '5e55ed7200faa8085092f6f0';
+// var student_id = '5e55ed7200faa8085092f6f2';
+// Student.findById(student_id, (err, student)=>{
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log(student);
+//         var updated_cart = student.in_cart;
+//         if(!updated_cart.includes(course_id)){
+//             updated_cart.push(course_id);
+//             Student.updateOne({_id: student_id}, {in_cart: updated_cart}, (err, callback)=>{
+//                 if(err){
+//                     throw err;
+//                 }
+//                 else{
+//                     console.log(callback);
+//                     console.log('Added To Cart');
+//                 }
+//             });
+//         }
+//         else{
+//             console.log('Course Already Added!');
+//         }
+//     }
+// });
 
+// var student_id = '5e55ed7200faa8085092f6f2';
+
+// Student.findById(student_id, (err, student)=>{
+//     var cart_items = student.in_cart;
+//     Course.find({_id: cart_items}, (err, items)=>{
+//         console.log(items);
+//     });
+// });
     
-    app.listen(9000);
+
 })
 .catch((err)=>{
-    
     console.log('Error in connecting to database!');
 });
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-app.use('/', DefaultRoutes);
 
 // Adding a new course
 // Course.create({course_name: "MongoDB Master Class", course_type:"Training", lec_hours: 35, max_seats: 25, price: 400}, (err, callback)=>{
