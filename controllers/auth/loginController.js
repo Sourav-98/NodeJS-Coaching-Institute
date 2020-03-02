@@ -1,4 +1,1 @@
 
-exports.postLogin = (req, res)=>{
-    
-}
