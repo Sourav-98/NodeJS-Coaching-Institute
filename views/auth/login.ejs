@@ -3,18 +3,18 @@
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6" style="text-align: center;">
-            <img src="/favicon.ico" style="width:40px; height:40px"/>
+            <img src="public/favicon.ico" style="width:40px; height:40px"/>
             <h2>course<strong>R</strong>us.com</h2>
             <br>
-            <div class="login-box">
+            <div class="form-box">
                 <h4>LOGIN</h4>
                 <br>
                 <form method="POST" action="">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Enter Username">
+                        <input type="text" name="email_id" class="form-control" placeholder="Enter Email ID">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Enter Password">
+                        <input id="password" type="password" name="password" class="form-control" placeholder="Enter Password"><span id="passwordToggler" onclick="passwordToggler()" class="fas fa-eye form-control-icon"></span>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </form>

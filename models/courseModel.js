@@ -6,6 +6,9 @@ module.exports = mongoose.model('Course', new Schema({
         type: String,
         unique: true,
     },
+    course_author:{
+        type: String,
+    },
     course_type:{
         type: String,
         required: true
@@ -17,6 +20,10 @@ module.exports = mongoose.model('Course', new Schema({
     },
     price:{
         type: Number,
+        required: true
+    },
+    image_url:{
+        type: String,
         required: true
     }
 }));

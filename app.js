@@ -120,14 +120,6 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use('/', DefaultRoutes);
-<<<<<<< HEAD
-
-//more comments
-//mostly comments
-//commentsq
-
-=======
->>>>>>> 80fb8ccc3af96a9b3590365ba0002a7e7047f524
 
 // Adding a new course
 // Course.create({course_name: "MongoDB Master Class", course_type:"Training", lec_hours: 35, max_seats: 25, price: 400}, (err, callback)=>{

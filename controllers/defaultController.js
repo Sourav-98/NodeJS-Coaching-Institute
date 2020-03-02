@@ -5,6 +5,7 @@ exports.getHomePage = (req, res)=>{
 }
 
 exports.getLoginPage = (req, res)=>{
+    // console.log(Object.keys(req.query).length);
     res.render('auth/login', {pageTitle: "Login", pagePath:"/login"});
 }
 
