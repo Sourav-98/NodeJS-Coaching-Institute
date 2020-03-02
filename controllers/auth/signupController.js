@@ -6,5 +6,4 @@ exports.getSignupPage = (req, res)=>{
 
 exports.postSignup = (req, res)=>{
     // register a new user
-    
 }

@@ -14,11 +14,9 @@ exports.getCoursesPage = (req, res)=>{
         res.render('student/course-details', {pageTitle: "Home", pagePath: "/student/courses"});
     }
 }
-<<<<<<< HEAD
-=======
 
 exports.getCartPage = (req, res)=>{
     var cart; // get the cart items of a particular student
     
 }
->>>>>>> 78f5097851a7937c0fb8b674a3b6a5b382078ad8
+
