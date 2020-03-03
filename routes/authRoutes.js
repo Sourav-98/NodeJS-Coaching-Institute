@@ -14,7 +14,7 @@ routes.get('/admin-login', loginController.getAdminLoginPage);
 // routes.post('/admin-login', loginController.postAdminLogin);
 
 routes.get('/signup', signupController.getSignupPage);
-// routes.post('/signup', signupController.postSignup);
+routes.post('/signup', signupController.postSignup);
 routes.get('/logout', loginController.getLogout);
 // routes.get('/password-reset', passwordresteController.getPasswordResetPage);
 // routes.post('/password-reset', passwordresteController.postPasswordReset);

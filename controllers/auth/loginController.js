@@ -12,6 +12,9 @@ exports.getAdminLoginPage = (req, res)=>{
 }
 
 exports.postLogin = (req, res)=>{       // student login post control
+    var loginData = req.body;
+
+    // req.session.student_id = ;
     req.session.isLoggedIn = true;
     req.session.mode = "student";
     res.redirect('/');

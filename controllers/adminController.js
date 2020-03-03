@@ -2,6 +2,9 @@
 const Course = require('./../models/courseModel');
 
 exports.getAddCourse = (req, res)=>{
+    if(req.session.isLoggedIn !== false || req.session.mode != "admin"){
+        res.redirect('/admin-login');
+    }
     res.render('admin/add-course', {pageTitle:"Add New Course", pagePath:'/admin/add-course'});
 }
 

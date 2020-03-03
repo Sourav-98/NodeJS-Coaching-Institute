@@ -21,7 +21,12 @@ app.use('/', AuthRoutes);
 app.use('/admin', AdminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res)=>{
-    res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});
+    if(req.session.isLoggedIn !== true){
+        res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});    // render a common index page
+    }
+    else{
+        res.render('home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+    }
 });
 app.use((req, res)=>{
     res.render('includes/404', {pageTitle: "404", pagePath:"404"})
