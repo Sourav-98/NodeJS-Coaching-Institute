@@ -7,7 +7,7 @@ const path = require('path');
 const app = express();
 
 //routes import
-// const AdminRoutes = require('./routes/adminRoutes');
+const AdminRoutes = require('./routes/adminRoutes');
 // const StudentRoutes = require('./routes/studentRoutes');
 // const DefaultRoutes = require('./routes/defaultRoutes');
 const AuthRoutes = require('./routes/authRoutes');
@@ -17,6 +17,7 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: true}));
 // app.use('/student', StudentRoutes);
 app.use('/', AuthRoutes);
+app.use('/admin', AdminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res)=>{
     res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});

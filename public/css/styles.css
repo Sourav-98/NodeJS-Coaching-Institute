@@ -1,8 +1,9 @@
-@font-face { font-family: Delicious; src: url('./../fonts/pt-sans/PTSans-Regular.ttf'); } 
-@font-face { font-family: Delicious; font-weight: bold; src: url('./../fonts/pt-sans/PTSans-Bold.ttf');}
+@font-face { font-family: Spartan; src: url('./../fonts/spartan/Spartan-Medium.ttf'); } 
+@font-face { font-family: Spartan; font-weight: bold; src: url('./../fonts/spartan/Spartan-Bold.ttf');}
+
 
 body{
-    font-family: 'PT Sans';
+    font-family: 'Spartan';
 }
 
 .container-fluid{
