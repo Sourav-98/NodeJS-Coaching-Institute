@@ -15,6 +15,7 @@ const AuthRoutes = require('./routes/authRoutes');
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(session({secret:'j2b3v543yb3hg43vu&%Gbv&IRFt5&^wqfoo9a8&G^FQ#VYCe', saveUninitialized: false, resave:false}));
 // app.use('/student', StudentRoutes);
 app.use('/', AuthRoutes);
 app.use('/admin', AdminRoutes);
