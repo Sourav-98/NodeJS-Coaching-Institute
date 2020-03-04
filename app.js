@@ -21,6 +21,7 @@ app.use('/', AuthRoutes);
 app.use('/admin', AdminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res)=>{
+    console.log(req.session.isLoggedIn);
     if(req.session.isLoggedIn !== true){
         res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});    // render a common index page
     }

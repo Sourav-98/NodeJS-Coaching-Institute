@@ -15,6 +15,11 @@
                     </div>
                     <div class="form-group">
                         <input id="password" type="password" name="password" class="form-control" placeholder="Enter Password"><span id="passwordToggler" onclick="passwordToggler()" class="fas fa-eye form-control-icon"></span>
+                        <% if(pass_err == true) {%>
+                            <small style="color: red; text-align: left;" class="form-text">
+                                Incorrect Password! Please try again.
+                            </small>
+                        <% } %>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </form>

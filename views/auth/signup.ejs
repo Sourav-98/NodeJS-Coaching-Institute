@@ -16,18 +16,18 @@
                     <div class="form-group">
                         <input type="email" class="form-control" name="email_id" placeholder="Enter Email Id">
                         <% if(err.email_match == true) {%>
-                            <small style="color: red" class="form-text">
+                            <small style="color: red; text-align: left;" class="form-text">
                                 Email already exists in database!
                             </small>
                         <% } %>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                        <input type="password" id="password" class="form-control" name="password" placeholder="Enter Password"><span id="passwordToggler" onclick="passwordToggler()" class="fas fa-eye form-control-icon"></span>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
                         <% if(err.password_match == false) {%>
-                            <small style="color: red" class="form-text">
+                            <small style="color: red; text-align: left;" class="form-text">
                                 Passwords don't match, please retype passwords again!
                             </small>
                         <% } %>

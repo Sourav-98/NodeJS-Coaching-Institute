@@ -6,10 +6,6 @@ module.exports = mongoose.model('Student', new Schema({
         type: String,
         required: true
     },
-    phone: {
-        type: String,
-        unique: true,
-    },
     email_id: {
         type: String,
         unique: true,
