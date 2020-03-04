@@ -1,26 +1,27 @@
 const Student = require('./../../models/studentModel');
 const bcrypt = require('bcrypt');
 
-var error = {
-    email_match: undefined, 
-    password_match: undefined
-};
-
 exports.getSignupPage = (req, res)=>{
-    res.render('auth/signup', {pageTitle: "Signup", pagePath:"/signup", err: error});
+    res.render('auth/signup', {pageTitle: "Signup", pagePath:"/signup", err: {email_match: undefined, 
+        password_match: undefined}});
 }
 
 exports.postSignup = (req, res)=>{
     // register a new user
     var data = req.body;
     // console.log(data);
-    Student.find({email_id: data.email_id}, (err, callback)=>{
+    Student.findOne({email_id: data.email_id}, (err, student)=>{
         if(err){
             console.log(err);
             // res.render();   // server error - 500
         }
         else{
-            if(callback.length != 0){
+            var error = {
+                email_match: undefined, 
+                password_match: undefined
+            };
+
+            if( student != undefined){
                 error.email_match = true;
                 res.render('auth/signup', {pageTitle: "Signup", pagePath:"/signup", err: error});
                 return;
@@ -33,7 +34,7 @@ exports.postSignup = (req, res)=>{
                 }
                 bcrypt.hash(data.password, 10, (err, hash_password)=>{
                     if(err){
-                        res.render('auth/signup', {pageTitle: "Signup", pagePath:"/signup", err: error});
+                        res.redirect('/signup');
                         return;
                     }
                     else{

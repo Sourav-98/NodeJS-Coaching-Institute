@@ -21,7 +21,7 @@ exports.postLogin = (req, res)=>{       // student login post control
             return;
         }
         else{
-            if(student.length == 0){
+            if(student == undefined){
                 res.redirect('/signup');    // the user doesn't exist, hence reroute to signup page
             }
             else{
