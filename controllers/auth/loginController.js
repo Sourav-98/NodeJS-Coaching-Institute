@@ -1,7 +1,7 @@
 
 const Student = require('./../../models/studentModel');
 const Admin = require('./../../models/adminModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 exports.getLoginPage = (req, res)=>{
     // console.log(req.session.isLoggedIn);
@@ -40,7 +40,7 @@ exports.postLogin = (req, res)=>{       // student login post control
                     res.redirect('/signup');    // the user doesn't exist, hence reroute to signup page
                 }
                 else{
-                    console.log(student);
+                    // console.log(student);
                     bcrypt.compare(data.password, student.password, (err, match)=>{
                         if(err){
                             // console.log(err);

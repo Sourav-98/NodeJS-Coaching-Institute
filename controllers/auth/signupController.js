@@ -1,5 +1,5 @@
 const Student = require('./../../models/studentModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 exports.getSignupPage = (req, res)=>{
     if(req.session.isLoggedIn == true){

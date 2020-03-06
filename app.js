@@ -26,18 +26,18 @@ app.use('/courses', CourseRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res)=>{
-    res.render('student/home', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
-    // if(req.session.isLoggedIn !== true){
-    //     res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});    // render a common index page
-    // }
-    // else{
-    //     if(req.session.mode == "student"){
-    //         res.render('student/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
-    //     }
-    //     else{
-    //         res.render('admin/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
-    //     }
-    // }
+    // res.render('student/home', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
+    if(req.session.isLoggedIn !== true){
+        res.render('index', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
+    }
+    else{
+        if(req.session.mode == "student"){
+            res.render('student/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+        }
+        else{
+            res.render('admin/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+        }
+    }
 });
 
 app.use((req, res)=>{
@@ -49,21 +49,30 @@ app.listen(9000);
 /*
 
 Routes Needed
+Before Authentication
 
-/               -   Home
+/               -   Index
 /login          -   Student Login
-/signup
+/signup         -   Student Signup
 /admin-login    -   Admin Login
-/logout
+/logout         -   Common Logout
 
-/home   -   Student Home Page
+
+After Authentication - Student
+
+/   -   Student Home Page
 /courses - List of Courses
-/courses/<course_id> - Info of a particular course (dynamic route)
+/courses/:course_id - Info of a particular course (dynamic route)
+/cart       -   Courses kept in cart
+/my-courses     - Student's enrolled courses
 
-/admin/home
-/admin/add-course
-/admin/manage - a master manage window
-/admin/manage?coursename
+
+After Authentication - Admin
+
+/   - admin home
+/add-course - admin add a new course
+/courses - a master manage window - edit and delete options3
+/courses/:course_id    - edit a single course
 */
 
 //model imports
