@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 module.exports = mongoose.model('Student', new Schema({
-    name: {
+    fname: {
+        type: String,
+        required: true
+    },
+    lname:{
         type: String,
         required: true
     },

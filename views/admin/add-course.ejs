@@ -29,7 +29,6 @@
                                 <input type="radio" id="course_type-2" name="course_type" value="Internship" class="custom-control-input">
                                 <label class="custom-control-label" for="course_type-2">Internship</label>
                             </div>
-                            
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -45,7 +44,7 @@
                                 <label>Price:</label>
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text">&#8377</div>
+                                        <div class="input-group-text"><i class="fas fa-rupee-sign"></i></div>
                                     </div>
                                     <input type="text" name="price" class="form-control">
                                 </div>
@@ -57,7 +56,13 @@
                                 <input type="text" class="form-control" name="max_seats" placeholder="Max. Seats">
                             </div>
                         </div>
-
+                    </div>
+                    <div class="form-group">
+                        <label>Enter a Brief Description:</label>
+                        <small style="text-align: left;" class="form-text">
+                            ( Separate each point with a new line )
+                        </small>
+                        <textarea class="form-control" id="course_desc" name="course_desc"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Choose a Cover Image:</label>

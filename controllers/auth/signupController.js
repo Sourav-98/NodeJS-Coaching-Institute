@@ -47,7 +47,8 @@ exports.postSignup = (req, res)=>{
                         }
                         else{
                             Student.create({
-                                name: data.name,
+                                fname: data.fname,
+                                lname: data.lname,
                                 email_id: data.email_id,
                                 password: hash_password
                             }, 

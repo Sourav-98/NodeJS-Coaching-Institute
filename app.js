@@ -8,26 +8,38 @@ const app = express();
 
 //routes import
 const AdminRoutes = require('./routes/adminRoutes');
-// const StudentRoutes = require('./routes/studentRoutes');
+const StudentRoutes = require('./routes/studentRoutes');
 // const DefaultRoutes = require('./routes/defaultRoutes');
 const AuthRoutes = require('./routes/authRoutes');
+const CourseRoutes = require('./routes/courseRoutes');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(session({secret:'j2b3v543yb3hg43vu&%Gbv&IRFt5&^wqfoo9a8&G^FQ#VYCe', saveUninitialized: false, resave:false}));
-// app.use('/student', StudentRoutes);
-app.use('/', AuthRoutes);
+
+app.use(AuthRoutes);
+app.use(StudentRoutes);
 app.use('/admin', AdminRoutes);
+app.use('/courses', CourseRoutes);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res)=>{
-    if(req.session.isLoggedIn !== true){
-        res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});    // render a common index page
-    }
-    else{
-        res.render('home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
-    }
+    res.render('student/home', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
+    // if(req.session.isLoggedIn !== true){
+    //     res.render('index', {pageTitle: "courseRus.com", pagePath:"/"});    // render a common index page
+    // }
+    // else{
+    //     if(req.session.mode == "student"){
+    //         res.render('student/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+    //     }
+    //     else{
+    //         res.render('admin/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+    //     }
+    // }
 });
+
 app.use((req, res)=>{
     res.render('includes/404', {pageTitle: "404", pagePath:"404"})
 });
@@ -44,9 +56,9 @@ Routes Needed
 /admin-login    -   Admin Login
 /logout
 
-/student/home   -   Student Home Page
-/student/courses - List of Courses
-/student/courses?coursename=<course_id> - Info of a particular course
+/home   -   Student Home Page
+/courses - List of Courses
+/courses/<course_id> - Info of a particular course (dynamic route)
 
 /admin/home
 /admin/add-course
@@ -55,9 +67,9 @@ Routes Needed
 */
 
 //model imports
-const Admin = require('./models/adminModel');
-const Student = require('./models/studentModel');
-const Course = require('./models/courseModel');
+// const Admin = require('./models/adminModel');
+// const Student = require('./models/studentModel');
+// const Course = require('./models/courseModel');
 
 mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{

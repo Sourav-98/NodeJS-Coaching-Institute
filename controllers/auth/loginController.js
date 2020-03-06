@@ -19,7 +19,7 @@ exports.getAdminLoginPage = (req, res)=>{
         res.redirect('/');
     }
     else{
-        res.render('admin/login', {pageTitle: "Admin Login", pagePath:"/admin-login", pass_err: pass_err});
+        res.render('admin/login', {pageTitle: "Admin Login", pagePath:"/admin-login", pass_err: false});
     }
 }
 
@@ -31,7 +31,7 @@ exports.postLogin = (req, res)=>{       // student login post control
         var data = req.body;
         Student.findOne({email_id: data.email_id}, (err, student)=>{
             if(err){
-                console.log(err);
+                // console.log(err);
                 res.redirect('/');
                 return;
             }
@@ -56,6 +56,7 @@ exports.postLogin = (req, res)=>{       // student login post control
                                 req.session.isLoggedIn = true;
                                 req.session.mode = "student";
                                 req.session.user_id = student._id;
+                                req.session.fname = student.fname;
                                 res.redirect('/');
                                 return;
                             }

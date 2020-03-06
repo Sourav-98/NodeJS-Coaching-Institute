@@ -13,6 +13,9 @@ module.exports = mongoose.model('Course', new Schema({
         type: String,
         required: true
     },
+    course_desc:{
+        type: String
+    },
     lec_hours: Number,
     max_seats: {
         type: Number,

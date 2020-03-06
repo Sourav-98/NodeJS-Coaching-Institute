@@ -1,9 +1,15 @@
 @font-face { font-family: Spartan; src: url('./../fonts/spartan/Spartan-Medium.ttf'); } 
 @font-face { font-family: Spartan; font-weight: bold; src: url('./../fonts/spartan/Spartan-Bold.ttf');}
 
+@font-face { font-family: 'PT Sans'; src: url('./../fonts/pt-sans/PTSans-Regular.ttf'); } 
+@font-face { font-family: 'PT Sans'; font-weight: bold; src: url('./../fonts/pt-sans/PTSans-Bold.ttf');}
+
+@font-face { font-family: 'Nunito'; src: url('./../fonts/nunito/Nunito-SemiBold.ttf'); } 
+@font-face { font-family: 'Nunito'; font-weight: bold; src: url('./../fonts/nunito/Nunito-Bold.ttf');}
+
 
 body{
-    font-family: 'Spartan';
+    font-family: 'Nunito';
 }
 
 .container-fluid{

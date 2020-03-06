@@ -6,7 +6,7 @@ var loginController = require('./../controllers/auth/loginController');
 var signupController = require('./../controllers/auth/signupController');
 // var passwordresteController = require('./../controllers/auth/passwordresetController');
 
-routes.use(express.static(path.join(__dirname, '..')));
+routes.use(express.static(path.join(__dirname, '..', 'public')));
 routes.get('/login', loginController.getLoginPage);
 routes.post('/login', loginController.postLogin);
 

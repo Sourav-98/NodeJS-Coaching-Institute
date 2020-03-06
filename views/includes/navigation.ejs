@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
     <a class="navbar-brand" href="/">
-        <img src="public/favicon.ico" style="width:36px; height:36px"/>
+        <img src="favicon.ico" style="width:36px; height:36px"/>
         course<strong>R</strong>us.com
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavigation">
@@ -8,16 +8,38 @@
     </button>
     <div class="collapse navbar-collapse" id="mainNavigation">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="/admin">Admin</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/courses">Browse</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="/shop">Shop</a>
+            <% if(session_data.isLoggedIn== true && session_data.mode=="student") { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/enrolled">My Courses</a>
             </li>
+            <% } %>
         </ul>
-        
+        <ul class="navbar-nav mr-right">
+            <% if(session_data.isLoggedIn== true && session_data.mode=="student") { %>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello, <%= session_data.fname %></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/account">My Account</a>
+                    <a class="dropdown-item" href="/cart">Cart</a>
+                    <a class="dropdown-divider"></a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+            </li>
+            <% } else { %>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello. Sign in</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/login">Login</a>
+                    <a class="dropdown-item" href="/signup">Signup</a>
+                </div>
+            </li>
+            <% } %>
+        </ul>
     </div>
 </nav>

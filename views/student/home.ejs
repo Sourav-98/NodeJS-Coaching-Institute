@@ -1,4 +1,15 @@
 <%- include('./../includes/header') %>
-<%- include('./../includes/navigation') %>
+<%- include('./../includes/navigation', {session_data: session_data}) %>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Student Home Page</h2>
+            <p>
+                <i class="fas fa-sync-alt fa-spin"></i>
+                <i class="fas fa-upload"></i>
+            </p>
+        </div>
+    </div>
+</div>
 <%- include('./../includes/footer') %>
