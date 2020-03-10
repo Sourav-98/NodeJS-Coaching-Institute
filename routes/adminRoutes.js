@@ -3,8 +3,7 @@ const routes = express.Router();
 const path = require('path');
 const multer = require('multer');
 
-const courseRoutes = require('./courseRoutes');
-
+const manageCourseRoutes = require('./manageCourseRoutes');
 const coverImageStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
         cb(null, 'public/assets/coverImages');
@@ -19,7 +18,7 @@ const adminController = require('./../controllers/adminController');
 
 routes.use(express.static(path.join(__dirname, '..', 'public')));
 
-routes.use('/manage-courses', courseRoutes);
+routes.use('/manage-courses', manageCourseRoutes);
 routes.get('/add-course', adminController.getAddCourse);
 routes.get('/', adminController.getAdminHomePage);
 // routes.use(multer().single('coverImage'));
