@@ -32,10 +32,11 @@ app.get('/', (req, res)=>{
     }
     else{
         if(req.session.mode == "student"){
-            res.render('student/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+            res.render('student/home', {pageTitle: "Home", pagePath:"/", session_data: req.session});
         }
         else{
-            res.render('admin/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
+            res.redirect('/admin');
+            // res.render('admin/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
         }
     }
 });

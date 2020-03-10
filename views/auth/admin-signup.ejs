@@ -1,0 +1,50 @@
+<%- include('./../includes/header') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align: center;">
+            <img src="favicon.ico" style="width:40px; height:40px"/>
+            <h2>course<strong>R</strong>us.com</h2>
+            <br>
+            <div class="form-box">
+                <h4>CREATE ACCOUNT</h4>
+                <br>
+                <form method="POST" action="/admin-signup">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-5"><input type="text" class="form-control" name="fname" placeholder="First Name"></div>
+                            <div class="col-7"><input type="text" class="form-control" name="lname" placeholder="Last Name"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email_id" placeholder="Enter Email Id">
+                        <% if(err.email_match == true) {%>
+                            <small style="color: red; text-align: left;" class="form-text">
+                                Email already exists in database!
+                            </small>
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" name="password" placeholder="Enter Password"><span id="passwordToggler" onclick="passwordToggler()" class="fas fa-eye form-control-icon"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+                        <% if(err.password_match == false) {%>
+                            <small style="color: red; text-align: left;" class="form-text">
+                                Passwords don't match, please retype passwords again!
+                            </small>
+                        <% } %>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+                <br>
+                <hr>
+                <p>Already have an account? <a href="/admin-login">Login</a></p>
+            </div>
+            
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+<%- include('./../includes/footer') %>

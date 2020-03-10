@@ -8,26 +8,39 @@
     </button>
     <div class="collapse navbar-collapse" id="mainNavigation">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/courses">Browse</a>
-            </li>
-            <% if(session_data.isLoggedIn== true && session_data.mode=="student") { %>
-            <li class="nav-item">
-                <a class="nav-link" href="/enrolled">My Courses</a>
-            </li>
+
+            <% if(session_data.isLoggedIn== true && session_data.mode=="admin") { %>
+                <li class="nav-item">
+                    <a class="nav-link <% if(pagePath=="/admin") { %> active <% } %>" href="/admin">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if(pagePath.startsWith("/courses")) { %> active <% } %>" href="/admin/manage-courses">Manage Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if(pagePath.startsWith("/admin/add-course")) { %> active <% } %>" href="/admin/add-course">Add Course</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link <% if(pagePath=="/") { %> active <% } %>" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if(pagePath.startsWith("/courses")) { %> active <% } %>" href="/courses">Browse</a>
+                </li>
+                <% if(session_data.isLoggedIn== true && session_data.mode=="student") { %>
+                    <li class="nav-item">
+                        <a class="nav-link <% if(pagePath.startsWith("/my-courses")) { %> active <% } %>" href="/my-courses">My Courses</a>
+                    </li>
+                <% } %>
             <% } %>
         </ul>
         <ul class="navbar-nav mr-right">
-            <% if(session_data.isLoggedIn== true && session_data.mode=="student") { %>
+            <% if(session_data.isLoggedIn== true) { %>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello, <%= session_data.fname %></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="/account">My Account</a>
                     <a class="dropdown-item" href="/cart">Cart</a>
-                    <a class="dropdown-divider"></a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
             </li>
@@ -37,6 +50,8 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="/login">Login</a>
                     <a class="dropdown-item" href="/signup">Signup</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/admin-login">Admin</a>
                 </div>
             </li>
             <% } %>

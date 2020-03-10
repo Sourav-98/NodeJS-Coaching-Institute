@@ -5,7 +5,12 @@ const Course = require('./../models/courseModel');
 
 exports.getCoursesPage = (req, res)=>{
     // listing all courses
-    res.render('student/course-list', {pageTitle: "Courses", pagePath: "/courses", session_data: req.session});
+    if(req.session.mode == "admin"){
+        res.render('admin/manage', {pageTitle: "Manage", pagePath:"/courses", session_data: "req.session"});
+    }
+    else{
+        res.render('student/course-list', {pageTitle: "Courses", pagePath: "/courses", session_data: req.session});
+    }
 }
 
 exports.getCourseInfoPage = (req, res)=>{
@@ -34,5 +39,5 @@ exports.getMyCoursesPage = (req, res)=>{
                 }
             });
         }
-    })
+    });
 }

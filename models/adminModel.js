@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 module.exports = mongoose.model('Admin', new Schema({
-    name: {
+    fname: {
         type: String,
         required: true
     },
-    phone: String,
+    lname:{
+        type: String,
+        required: true
+    },
     email_id: {
         type: String,
         unique: true,
