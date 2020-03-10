@@ -3,12 +3,30 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Course List Page</h2>
-            <p>
-                <i class="fas fa-sync-alt fa-spin"></i>
-                <i class="fas fa-upload"></i>
-            </p>
+        <div class="col-md-3">
+            <% for(var course of courses) { %>
+                <div class="card">
+                    <img class="card-img-top" src="<%=course.image_url%>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=course.course_name%></h5>
+                        <p class="card-text">
+                            <div class="row">
+                                <div class="col"><%=course.course_type%></div>
+                                <div class="col"><%=course.lec_hours%> hours</div>
+                            </div>
+                        </p>
+                        <div style="text-align: right;">
+                            <% if(session_data.mode=="student") { %>
+                                <a href="" class="btn btn-primary">Details</a>
+                            <% } else { %>
+                                <a href="/admin/manage-courses/<%=course._id%>" class="btn btn-primary">Edit</a>
+                                <a href="" class="btn btn-danger">Delete</a>
+                            <% } %>    
+                        </div>
+                        
+                    </div>
+                </div>
+            <% } %>
         </div>
     </div>
 </div>

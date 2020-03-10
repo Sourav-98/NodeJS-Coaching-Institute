@@ -6,10 +6,10 @@ const multer = require('multer');
 const manageCourseRoutes = require('./manageCourseRoutes');
 const coverImageStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
-        cb(null, 'public/assets/coverImages');
+        cb(null, path.join('public', 'assets', 'coverImages'));
     },
     filename: (req, file, cb)=>{
-        cb(null, new Date().toISOString()+'-'+file.originalname);
+        cb(null, file.originalname);
     }
 });
 
