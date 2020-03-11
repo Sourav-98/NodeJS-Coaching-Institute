@@ -11,17 +11,23 @@
                         <h5 class="card-title"><%=course.course_name%></h5>
                         <p class="card-text">
                             <div class="row">
-                                <div class="col"><%=course.course_type%></div>
-                                <div class="col"><%=course.lec_hours%> hours</div>
-                            </div>
+                                <div class="col">
+                                    <%=course.course_type%><br>
+                                    <%=course.max_seats%> Seats
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <%=course.lec_hours%> Hours<br>
+                                    <i class="fas fa-rupee-sign"></i> <%=course.price%>
+                                </div>
+                            </div>    
                         </p>
                         <div style="text-align: right;">
-                            <% if(session_data.mode=="student") { %>
-                                <a href="" class="btn btn-primary">Details</a>
+                            <% if(session_data.mode=="student" || session_data.isLoggedIn!=true) { %>
+                                <a href="/courses/<%=course._id%>" class="btn btn-primary">Details</a>
                             <% } else { %>
                                 <a href="/admin/manage-courses/<%=course._id%>" class="btn btn-primary">Edit</a>
                                 <a href="" class="btn btn-danger">Delete</a>
-                            <% } %>    
+                            <% } %>   
                         </div>
                         
                     </div>

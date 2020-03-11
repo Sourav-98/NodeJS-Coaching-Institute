@@ -3,15 +3,37 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Course Details Page</h2>
-            <p>
-                <i class="fas fa-sync-alt fa-spin"></i>
-                <i class="fas fa-upload"></i>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 form-box" style="padding:20px; margin-top: 30px; height: auto;">
+            <img src="<%= course.image_url %>" style="width: 100%;">
+            <p style="font-size: 20px; text-align: justify;">
                 <br>
-                <h4><%= course_id %></h4>
+                <h4 style="text-align: center;"><i class="fas fa-rupee-sign"></i><%=course.price%></h4>
+                <hr>
+                Course Details:<br>
+                <ul>
+                    <li><%=course.course_type%></li>
+                    <li><%=course.lec_hours%> hours of lectures</li>
+                    <li><%=course.max_seats%> seats available</li>
+                </ul>
+                <hr>
+                <button class="btn btn-primary btn-block btn-lg">Add to Cart</button>
             </p>
         </div>
+        <div class="col-md-6" style="padding: 50px;">
+            <h3><%=course.course_name%></h3>
+            <h4 style="text-align: right;"><i>-<%=course.course_author%></i></h4>
+            <p>
+                <h4>What you will learn</h4>
+                <ul>
+                    <% for( var desc_line of course.course_desc.split('\r\n')) { %>
+                        <li><%= desc_line %></li>
+                    <% } %>
+                </ul>
+                
+            </p>
+        </div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 
