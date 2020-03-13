@@ -183,6 +183,7 @@ mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb
 })
 .catch((err)=>{
     console.log('Error in connecting to database!');
+    console.log(err);
 });
 
 
