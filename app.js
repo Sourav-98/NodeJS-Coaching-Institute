@@ -42,7 +42,7 @@ app.get('/', (req, res)=>{
 });
 
 app.use((req, res)=>{
-    res.render('includes/404', {pageTitle: "404", pagePath:"404"})
+    res.render('includes/404', {pageTitle: "404", pagePath:"404", session_data: req.session})
 });
 
 app.listen(9000);

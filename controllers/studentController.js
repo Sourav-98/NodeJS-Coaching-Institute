@@ -9,16 +9,14 @@ exports.getHomePage = (req, res)=>{
 
 exports.getCartPage = (req, res)=>{
     var cart; // get the cart items of a particular student
-    Student.findOne({_id: req.session.userid}, (err, student)=>{
+    Student.findOne({_id: req.session.user_id}, (err, student)=>{
         if(err){
-            res.redirect('/admin');
+            res.redirect('/');
             return;
         }
         else{
-
-            Course.find({_id: student.in_cart},(err,course)=>{
-            res.render('student/in-cart', {pageTitle: "Cart", pagePath: "/cart", session_data: req.session,course_id: _id})
-            
+            Course.find({_id: student.in_cart}, (err,courses)=>{
+                res.render('student/in-cart', {pageTitle: "Cart", pagePath: "/cart", session_data: req.session, courses: courses});
             })
             
         }
