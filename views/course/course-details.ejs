@@ -4,28 +4,36 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-4 form-box" style="padding:20px; margin-top: 30px; height: auto;">
+        <div class="col-md-4" style="padding: 20px;">
             <img src="<%= course.image_url %>" style="width: 100%;">
             <p style="font-size: 20px; text-align: justify;">
-                <br>
-                <h4 style="text-align: center;"><i class="fas fa-rupee-sign"></i><%=course.price%></h4>
+                <h3><%=course.course_name%></h3>
+                <h4 style="text-align: right;"><i>-<%=course.course_author%></i></h4>
                 <hr>
                 Course Details:<br>
                 <ul>
                     <li><%=course.course_type%></li>
                     <li><%=course.lec_hours%> hours of lectures</li>
-                    <li><%=course.max_seats%> seats available</li>
+                    <li>
+                    <% if(course.max_seats == 0) { %>
+                    <% } else if(course.max_seats < 5) { %> 
+                        <span style="color: darkred"><%=course.max_seats%></span> seats available. <span style="color: darkred">Hurry!</span>
+                    <% } else { %>
+                        <%=course.max_seats%> seats available.
+                    <% } %>
+                    </li>
                 </ul>
                 <hr>
-                <button class="btn btn-primary btn-block btn-lg">Add to Cart</button>
+                <form method="POST" action="/courses/<%=course._id%>">
+                    <button <% if(course.max_seats == 0) { %> disabled <% } %>class="btn btn-primary btn-block btn-lg"><i class="fas fa-rupee-sign"></i><%=course.price%> - Add to Cart</button>
+                </form>
             </p>
         </div>
-        <div class="col-md-6" style="padding: 50px;">
-            <h3><%=course.course_name%></h3>
-            <h4 style="text-align: right;"><i>-<%=course.course_author%></i></h4>
+        <div class="col-md-6" style="padding: 20px;">
+            
             <p>
                 <h4>What you will learn</h4>
-                <ul>
+                <ul style="font-size: 20px;">
                     <% for( var desc_line of course.course_desc.split('\r\n')) { %>
                         <li><%= desc_line %></li>
                     <% } %>
