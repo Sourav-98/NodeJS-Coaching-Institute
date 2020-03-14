@@ -25,6 +25,7 @@ app.use('/admin', AdminRoutes);
 app.use('/courses', CourseRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res)=>{
     // res.render('student/home', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
     if(req.session.isLoggedIn !== true){
@@ -41,7 +42,7 @@ app.get('/', (req, res)=>{
     }
 });
 
-app.use((req, res)=>{
+app.use('*', (req, res)=>{
     res.render('includes/404', {pageTitle: "404", pagePath:"404", session_data: req.session})
 });
 

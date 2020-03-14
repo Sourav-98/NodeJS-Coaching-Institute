@@ -8,20 +8,23 @@ exports.getHomePage = (req, res)=>{
 }
 
 exports.getCartPage = (req, res)=>{
-    var cart; // get the cart items of a particular student
-    Student.findOne({_id: req.session.user_id}, (err, student)=>{
-        if(err){
-            res.redirect('/');
-            return;
-        }
-        else{
-            Course.find({_id: student.in_cart}, (err,courses)=>{
-                res.render('student/in-cart', {pageTitle: "Cart", pagePath: "/cart", session_data: req.session, courses: courses});
-            })
-            
-        }
-    })
-    
+    if(req.session.isLoggedIn != true || req.session.mode != "student"){
+        res.redirect('/login');
+    }
+    else{
+        Student.findOne({_id: req.session.user_id}, (err, student)=>{
+            if(err){
+                res.redirect('/');
+                return;
+            }
+            else{
+                Course.find({_id: student.in_cart}, (err,courses)=>{
+                    res.render('student/in-cart', {pageTitle: "Cart", pagePath: "/cart", session_data: req.session, courses: courses});
+                })
+                
+            }
+        });
+    }
 }
 
 exports.getMyCoursesPage = (req, res)=>{
