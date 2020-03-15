@@ -25,7 +25,7 @@
                 </ul>
                 <hr>
                 <form method="POST" action="/courses/<%=course._id%>">
-                    <button <% if(course.max_seats == 0) { %> disabled <% } %>class="btn btn-primary btn-block btn-lg"><i class="fas fa-rupee-sign"></i><%=course.price%> - Add to Cart</button>
+                    <button <% if(course.max_seats == 0) { %> disabled <% } %>class="btn btn-primary btn-block btn-lg" style="border-radius: 40px"><i class="fas fa-rupee-sign"></i><%=course.price%> - Add to Cart</button>
                 </form>
             </p>
         </div>
