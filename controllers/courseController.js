@@ -29,6 +29,55 @@ exports.getCourseInfoPage = (req, res)=>{
     });
 }
 
+exports.postAddToCartPage = (req, res)=>{
+    if(req.session.isLoggedIn != true){
+        res.redirect('/login');
+    }
+    else{
+        Course.findOne({_id: req.params.course_id}, (err, course)=>{
+            if(err){
+                console.log(err);
+                res.redirect('/');
+                return;
+            }
+            else{
+                if(course.max_seats == 0){
+                    res.redirect('/');
+                }
+                else{
+                    Student.findById(req.session.user_id, (err, student)=>{
+                        if(err){
+                            console.log(err);
+                            res.redirect('/');
+                        }
+                        else{
+                            var updated_cart = student.in_cart;
+                            if(!updated_cart.includes(course._id)){
+                                updated_cart.push(course._id);
+                                Student.updateOne({_id: student._id}, {in_cart: updated_cart}, (err, callback)=>{
+                                    if(err){
+                                        throw err;
+                                    }
+                                    else{
+                                        console.log(callback);
+                                        console.log('Added To Cart');
+                                        res.redirect('/cart');
+                                    }
+                                });
+                            }
+                            else{
+                                console.log('Course Already Added!');
+                                res.redirect('/cart');
+                            }
+                        }
+                    });
+                }
+            }
+        })
+    }
+    
+}
+
 exports.getMyCoursesPage = (req, res)=>{
     if(req.session.isLoggedIn == true && req.session.mode == "student"){
         Student.findOne({_id: req.session.user_id}, (err, student)=>{

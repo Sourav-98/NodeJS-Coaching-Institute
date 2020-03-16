@@ -41,8 +41,7 @@ exports.getCartPage = (req, res)=>{
             else{
                 Course.find({_id: student.in_cart}, (err,courses)=>{
                     res.render('student/in-cart', {pageTitle: "Cart", pagePath: "/cart", session_data: req.session, courses: courses});
-                })
-                
+                });
             }
         });
     }
