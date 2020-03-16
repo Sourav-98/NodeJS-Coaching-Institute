@@ -14,6 +14,7 @@ routes.get('/home', studentController.getHomePage);
 routes.use('/courses', courseRoutes);
 // routes.get('/courses', studentController.getCoursesPage);
 routes.get('/cart', studentController.getCartPage);
+routes.get('/checkout',studentController.getCheckout);
 
 
 module.exports = routes;

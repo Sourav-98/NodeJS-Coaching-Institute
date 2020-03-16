@@ -1,6 +1,29 @@
 <%- include('./../includes/header') %>
 <%- include('./../includes/navigation')%>
-
+<div class="container-fluid">
+    <% for(var i=0; i < courses.length; i++) { %>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 form-box" style="padding:20px; margin-top: 30px; height: auto;">
+            <img src="<%= courses[i].image_url %>" style="width: 100%;">
+            <p style="font-size: 20px; text-align: justify;">
+                <br>
+                <h4 style="text-align: center;"><i class="fas fa-rupee-sign"></i><%=courses[i].price%></h4>
+                <hr>
+                Course Details:<br>
+                <ul>
+                    <li><%=courses[i].course_type%></li>
+                    <li><%=courses[i].lec_hours%> hours of lectures</li>
+                    <li><%=courses[i].max_seats%> seats available</li>
+                </ul>
+                <hr>
+                <button class="btn btn-danger btn-block btn-lg">Remove from cart</button>
+            </p>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <% } %>
+</div>
 
 <%- include('./../includes/footer') %>
 
