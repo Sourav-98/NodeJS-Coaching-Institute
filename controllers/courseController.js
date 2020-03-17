@@ -104,5 +104,4 @@ exports.getMyCoursesPage = (req, res)=>{
     else{
         res.redirect('/login');
     }
-    
 }
