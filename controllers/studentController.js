@@ -16,17 +16,37 @@ exports.getCheckout = ( req ,res) => {
             if(err){
                 res.redirect('/');
                 return;
-            }
+                    }
             else{
-                student.enrolled_courses.push(student.in_cart);
-                console.log(student.enrolled_courses);
-                
-            }
-        });
+                var incart = student.in_cart;
+                //Course.find(incart , (err,courses) =>{
+                    Student.updateMany({$set: {enrolled_courses: incart, in_cart: []}},(err, callback)=>{
+                        if(err){
+                            throw err;
+                                }
+                        else{
+                           // console.log(callback);
+                            console.log('Updated');
+                            console.log(callback);
+                            console.log(student.in_cart);
+                            console.log(student.enrolled_courses);
+                            res.redirect('/my-courses');
+                            }
+
+                                       });
+
+
+                          // });
+               }   
+
+                        });
+
+       }
+
     }
     
 
-}
+                                    
 
 exports.getCartPage = (req, res)=>{
     if(req.session.isLoggedIn != true || req.session.mode != "student"){
