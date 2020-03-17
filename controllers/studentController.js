@@ -7,6 +7,47 @@ exports.getHomePage = (req, res)=>{
     res.render('student/home', {pageTitle: "Home", pagePath: "/", session_data: req.session});
 }
 
+exports.getCheckout = ( req ,res) => {
+    if(req.session.isLoggedIn != true && req.session.mode != "student"){
+        res.redirect('/login');
+    }
+    else{
+        Student.findOne({_id : req.session.user_id},(err, student)=>{
+            if(err){
+                res.redirect('/');
+                return;
+                    }
+            else{
+                var incart = student.in_cart;
+                //Course.find(incart , (err,courses) =>{
+                    Student.updateMany({$set: {enrolled_courses: incart, in_cart: []}},(err, callback)=>{
+                        if(err){
+                            throw err;
+                                }
+                        else{
+                           // console.log(callback);
+                            console.log('Updated');
+                            console.log(callback);
+                            console.log(student.in_cart);
+                            console.log(student.enrolled_courses);
+                            res.redirect('/my-courses');
+                            }
+
+                                       });
+
+
+                          // });
+               }   
+
+                        });
+
+       }
+
+    }
+    
+
+                                    
+
 exports.getCartPage = (req, res)=>{
     if(req.session.isLoggedIn != true || req.session.mode != "student"){
         res.redirect('/login');

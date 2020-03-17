@@ -1,5 +1,57 @@
 <%- include('./../includes/header') %>
 <%- include('./../includes/navigation')%>
+<div class="container-fluid">
+    <%var sum = 0%>
+    <div class="row">
+       
+        <div class="col-md-8">
+           
+            <% for(var course of courses) { %>
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="card-img-top" src="<%=course.image_url%>" alt="Card image cap">
+                        </div>
+                        <div class="col-md-8">
+                            <h5><%=course.course_name%></h5>
+                            <div class="row">
+                                <div class="col-3">
+                                    <%=course.course_type%><br>
+                                    <%=course.max_seats%> Seats
+                                </div>
+                                <div class="col-3" style="text-align: right;">
+                                    <%=course.lec_hours%> Hours<br>
+                                    <i class="fas fa-rupee-sign"></i> <%=course.price%>
+                                </div>
+                                <div class="col">
+                                    <div style="text-align: right;">
+                                       
+                                            <a href="#" class="btn btn-danger">REMOVE</a>
+                                           
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <%sum = sum + course.price%>
+            <% } %>
+        </div>
+
+        <div class="col-md-4">
+            <br>
+            <h1>Total :<i class="fas fa-rupee-sign"></i> <%=sum%> </h1>
+            <br>
+            <a href="/checkout" class="btn btn-primary">CHECKOUT</a>
+        </div>
+            
+        
+    </div>
+</div>
+        
+        
+       
+
 
 
 <%- include('./../includes/footer') %>
