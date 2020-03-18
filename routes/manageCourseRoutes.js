@@ -2,11 +2,11 @@ const express = require('express');
 const routes = express.Router();
 const path = require('path');
 
-const courseController = require('./../controllers/manageCourseController');
+const adminController = require('./../controllers/adminCourseController');
 
 routes.use(express.static(path.join(__dirname, '..', 'public')));
 
-routes.get('/', courseController.getManageCoursesPage);
-routes.get('/:course_id', courseController.getEditCoursePage);
+routes.get('/', adminController.getManageCoursesPage);
+routes.get('/:course_id', adminController.getEditCoursePage);
 
 module.exports = routes;
