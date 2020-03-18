@@ -3,8 +3,8 @@
 <div class="container-fluid">
     <%var sum = 0%>
     <div class="row">
-       
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
            
             <% for(var course of courses) { %>
                 <div class="card-box">
@@ -40,11 +40,13 @@
 
         <div class="col-md-4">
             <br>
-            <h1>Total :<i class="fas fa-rupee-sign"></i> <%=sum%> </h1>
+            <h1>Total : <i class="fas fa-rupee-sign"></i> <%=sum%> </h1>
             <br>
-            <a href="/checkout" class="btn btn-primary">CHECKOUT</a>
+            <form action="/checkout" method="POST">
+                <button class="btn btn-primary btn-lg">CHECKOUT</button>
+            </form>
         </div>
-            
+        <div class="col-md-1"></div>
         
     </div>
 </div>

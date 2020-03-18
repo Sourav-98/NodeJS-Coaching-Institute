@@ -2,11 +2,12 @@ const express = require('express');
 const routes = express.Router();
 const path = require('path');
 
-const courseController = require('./../controllers/courseController');
+const studentController = require('./../controllers/studentController');
 
 routes.use(express.static(path.join(__dirname, '..', 'public')));
 
-routes.get('/', courseController.getCoursesPage);
-routes.get('/:course_id', courseController.getCourseInfoPage);
-routes.post('/:course_id', courseController.postAddToCartPage);
+routes.get('/', studentController.getCoursesPage);
+routes.get('/:course_id', studentController.getCourseInfoPage);
+routes.post('/:course_id', studentController.postAddToCartPage);
+
 module.exports = routes;

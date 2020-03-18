@@ -24,9 +24,13 @@
                     </li>
                 </ul>
                 <hr>
+                <% if (enrolled == true) { %>
+                    <button disabled class="btn btn-primary btn-block btn-lg" style="border-radius: 40px">Enrolled</button>
+                <% } else { %>
                 <form method="POST" action="/courses/<%=course._id%>">
                     <button <% if(course.max_seats == 0) { %> disabled <% } %>class="btn btn-primary btn-block btn-lg" style="border-radius: 40px"><i class="fas fa-rupee-sign"></i><%=course.price%> - Add to Cart</button>
                 </form>
+                <% } %>
             </p>
         </div>
         <div class="col-md-6" style="padding: 20px;">
