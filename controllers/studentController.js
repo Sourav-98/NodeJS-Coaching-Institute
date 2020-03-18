@@ -99,8 +99,8 @@ exports.postAddToCartPage = (req, res)=>{
                                         throw err;
                                     }
                                     else{
-                                        console.log(callback);
-                                        console.log('Added To Cart');
+                                        // console.log(callback);
+                                        // console.log('Added To Cart');
                                         res.redirect('/cart');
                                     }
                                 });
@@ -129,6 +129,11 @@ exports.postCheckout = ( req ,res) => {
             }
             else{
                 var in_cart = student.in_cart;
+                Course.updateMany({_id: in_cart}, { "$inc": {max_seats: -1} }, (err, callback)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                });
                 var enrolled = student.enrolled_courses;
                 for( var c of in_cart){
                     if(!enrolled.includes(c)){

@@ -1,0 +1,92 @@
+<%- include('./../includes/header') %>
+<%- include('./../includes/navigation') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align: center;">
+            <div class="form-box">
+                <h4>EDIT COURSE</h4>
+                <hr>
+                <!-- <img width=50px height=50px src="public/assets/coverImages/2020-03-01T15:53:18.612Z-book-icon-png-4.png"> -->
+                <form style="text-align: left;" method="POST" action="/admin/manage-courses/<%= course._id %>" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Enter Course Name:</label>
+                        <input type="text" class="form-control" name="course_name" value="<%= course.course_name %>" placeholder="Course Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Course Author:</label>
+                        <input type="text" class="form-control" name="course_author" value="<%= course.course_author %>" placeholder="Course Author">
+                    </div>
+                    <div class="row">
+                        <div class="col" style="text-align: left;">
+                            <label>Select Course Type:</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="course_type-1" name="course_type" value="Training" class="custom-control-input">
+                                <label class="custom-control-label" for="course_type-1">Training</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="course_type-2" name="course_type" value="Internship" class="custom-control-input">
+                                <label class="custom-control-label" for="course_type-2">Internship</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Total Course Duration:</label>
+                                <input type="text" class="form-control" name="lec_hours" value="<%= course.lec_hours%>" placeholder="In Hours">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Price:</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-rupee-sign"></i></div>
+                                    </div>
+                                    <input type="text" name="price" value="<%= course.price %>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Total Seats Available:</label>
+                                <input type="text" class="form-control" name="max_seats" value="<%= course.max_seats %>" placeholder="Max. Seats">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter a Brief Description:</label>
+                        <small style="text-align: left;" class="form-text">
+                            ( Separate each points with a new line )
+                        </small>
+                        <textarea class="form-control" id="course_desc" name="course_desc" value="<%= course.course_desc %>"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Choose a Cover Image:</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="coverImage" id="coverImage">
+                            <label class="custom-file-label text-muted" style="text-align: left;" for="coverImage"><i class="far fa-image"></i></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Update Course</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.custom-file-input').addEventListener('change',function(e){
+        var fileName = document.getElementById("coverImage").files[0].name;
+        var nextSibling = e.target.nextElementSibling
+        nextSibling.innerText = fileName
+    });
+</script>
+
+<%- include('./../includes/footer') %>

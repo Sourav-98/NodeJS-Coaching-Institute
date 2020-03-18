@@ -57,7 +57,6 @@ exports.getManageCoursesPage = (req, res)=>{
                 res.render('course/course-list', {pageTitle: "Manage Courses", pagePath:"/admin/manage-courses", session_data: req.session, courses: courses});
             }
         });
-        
     }
     else{
         res.redirect('/admin-login');
@@ -65,12 +64,44 @@ exports.getManageCoursesPage = (req, res)=>{
 }
 
 exports.getEditCoursePage = (req, res)=>{
-    var id = req.params.course_id;
-    if(req.session.mode == "admin" && req.session.isLoggedIn == true){
-        res.render('course/course-details', {pageTitle: "Edit Course", pagePath:"/admin/manage-courses", course_id: id, session_data: req.session});
+    if(req.session.mode != "admin" || req.session.isLoggedIn != true){
+        return res.redirect('/admin-login');
     }
     else{
-        res.redirect('/admin-login');
-    }
+        var id = req.params.course_id;
+        Course.findOne({_id: id}, (err, course)=>{
+            if(err){
+                return res.redirect('/admin');
+            }
+            else{
+                res.render('admin/edit-course', {pageTitle: "Edit Course", pagePath:"/admin/manage-courses", session_data: req.session, course: course});
+            }
+        });
+    } 
+}
+
+exports.postEditCourse = (req, res)=>{
+    var id = req.params.course_id;
+    var data = req.body;
+    var image = req.file;
+    Course.findOneAndUpdate({_id: id}, {
+        course_name: data.course_name, 
+        course_type: data.course_type, 
+        course_author: data.course_author, 
+        lec_hours: data.lec_hours,
+        course_desc: data.course_desc,
+        price: data.price,
+        max_seats: data.max_seats,
+        image_url: image.path.slice(7)
+    }, (err, callback)=>{
+        if(err){
+            console.log(err);
+            res.redirect('/admin');
+        }
+        else{
+            var urlString = '/admin/manage-courses/' + id;
+            res.redirect(urlString);
+        }
+    });
 }
 
