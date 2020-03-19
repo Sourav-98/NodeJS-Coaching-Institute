@@ -25,7 +25,12 @@
                                 </div>
                                 <div class="col">
                                     <div style="text-align: right;">
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                            <form action="/delete" method="POST">
+                                                <button class="btn btn-danger btn-md" id="<%=course._id%>"style="border-radius: 40px;" >REMOVE </button>
+                                                <input class="input" id="text" name="text" type="hidden" value="<%=course._id%>" />
+
+                                           <!--<a href="/delete/<%=course._id%>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> -->
+                                            </form>
                                     </div>
                                 </div>
                             </div> 

@@ -117,6 +117,7 @@ exports.postAddToCartPage = (req, res)=>{
     }
 }
 
+
 exports.postCheckout = ( req ,res) => {
     if(req.session.isLoggedIn != true && req.session.mode != "student"){
         res.redirect('/login');
@@ -182,3 +183,45 @@ exports.getMyCoursesPage = (req, res)=>{
         res.redirect('/login');
     }
 }
+
+exports.deleteMyCourse = (req,res) => {
+    
+   //  var info = JSON.parse(req.body);
+   console.log(req.body);
+   values =JSON.stringify(req.body);
+   values1 = JSON.parse(values);
+   console.log(values1['text']);
+   var idofcourse = values1['text'];
+
+   Student.updateOne({_id: req.session.user_id}, {"$pull":{"in_cart":idofcourse}}, (err, callback)=>{
+    if(err){
+        console.log(err);
+        res.redirect('/');
+        return;
+    }
+    else{
+        
+        res.redirect('/cart');
+    }
+});
+    
+            
+        //     Student.updateOne( {_id:req.session.user_id}, { "$pull": { "enrolled_courses" : { "$in": values1['text'] } } },(err, callback)=>{
+        //          if(err){
+        //         console.log(err);
+        //         res.redirect('/');
+        //         return;
+        //     }
+        //     else{
+                
+        //         res.redirect('/cart');
+        //     }
+        // });
+
+           
+        }
+    
+
+
+     
+
