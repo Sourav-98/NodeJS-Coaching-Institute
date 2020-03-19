@@ -3,7 +3,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             <% for(var enrolleds of enrolled) { %>
                 <div class="card-box">
                     <div class="row">
@@ -15,21 +16,17 @@
                             <div class="row">
                                 <div class="col-3">
                                     <%=enrolleds.course_type%><br>
-                                    <%=enrolleds.max_seats%> Seats
                                 </div>
                                 <div class="col-3" style="text-align: right;">
                                     <%=enrolleds.lec_hours%> Hours<br>
-                                    <i class="fas fa-rupee-sign"></i> <%=enrolleds.price%>
                                 </div>
-                                
                             </div> 
                         </div>
                     </div>
                 </div>
-                
             <% } %>
-            
         </div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 
