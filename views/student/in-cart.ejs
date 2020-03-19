@@ -26,10 +26,8 @@
                                 <div class="col">
                                     <div style="text-align: right;">
                                             <form action="/delete" method="POST">
-                                                <button class="btn btn-danger btn-md" id="<%=course._id%>"style="border-radius: 40px;" >REMOVE </button>
-                                                <input class="input" id="text" name="text" type="hidden" value="<%=course._id%>" />
-
-                                           <!--<a href="/delete/<%=course._id%>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> -->
+                                                <button class="btn btn-danger btn-md"><i class="fas fa-trash-alt"></i></button>
+                                                <input class="input" name="course_id" type="hidden" value="<%=course._id%>">
                                             </form>
                                     </div>
                                 </div>

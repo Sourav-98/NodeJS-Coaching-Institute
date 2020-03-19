@@ -184,44 +184,17 @@ exports.getMyCoursesPage = (req, res)=>{
     }
 }
 
-exports.deleteMyCourse = (req,res) => {
-    
-   //  var info = JSON.parse(req.body);
-//    console.log(req.body);
-   values =JSON.stringify(req.body);
-   values1 = JSON.parse(values);
-//    console.log(values1['text']);
-   var idofcourse = values1['text'];
+exports.postRemoveFromCart = (req,res) => {
+    var idofcourse = req.body.course_id;
 
-   Student.updateOne({_id: req.session.user_id}, {"$pull":{"in_cart":idofcourse}}, (err, callback)=>{
-    if(err){
-        console.log(err);
-        res.redirect('/');
-        return;
-    }
-    else{
-        
-        res.redirect('/cart');
-    }
-});
-    
-            
-        //     Student.updateOne( {_id:req.session.user_id}, { "$pull": { "enrolled_courses" : { "$in": values1['text'] } } },(err, callback)=>{
-        //          if(err){
-        //         console.log(err);
-        //         res.redirect('/');
-        //         return;
-        //     }
-        //     else{
-                
-        //         res.redirect('/cart');
-        //     }
-        // });
-
-           
+    Student.updateOne({_id: req.session.user_id}, {"$pull":{"in_cart":idofcourse}}, (err, callback)=>{
+        if(err){
+            console.log(err);
+            res.redirect('/');
+            return;
         }
-    
-
-
-     
-
+        else{
+            res.redirect('/cart');
+        }
+    });
+}
