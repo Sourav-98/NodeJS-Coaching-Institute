@@ -1,0 +1,36 @@
+<%- include('./../includes/header') %>
+<%- include('./../includes/navigation') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <% for(var enrolleds of enrolled) { %>
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="card-img-top" src="<%=enrolleds.image_url%>" alt="Card image cap">
+                        </div>
+                        <div class="col-md-8">
+                            <h5><%=enrolleds.course_name%></h5>
+                            <div class="row">
+                                <div class="col-3">
+                                    <%=enrolleds.course_type%><br>
+                                    <%=enrolleds.max_seats%> Seats
+                                </div>
+                                <div class="col-3" style="text-align: right;">
+                                    <%=enrolleds.lec_hours%> Hours<br>
+                                    <i class="fas fa-rupee-sign"></i> <%=enrolleds.price%>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                
+            <% } %>
+            
+        </div>
+    </div>
+</div>
+
+<%- include('./../includes/footer') %>
