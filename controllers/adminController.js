@@ -43,6 +43,23 @@ exports.postAddCourse = (req, res)=>{
     });
 }
 
+exports.postDeleteCourse = (req, res)=>{
+    if(req.session.mode != "admin"){
+        return res.redirect('/admin-login');
+    }
+    else{
+        var course_id = req.body.course_id;
+        Course.deleteOne({_id: course_id}, (err, callback)=>{
+            if(err){
+                res.redirect('/admin');
+            }
+            else{
+                res.redirect('/admin/manage-courses');
+            }
+        });
+    }
+}
+
 exports.getManageCoursesPage = (req, res)=>{
     // listing all courses
     if(req.session.mode == "admin" && req.session.isLoggedIn == true){

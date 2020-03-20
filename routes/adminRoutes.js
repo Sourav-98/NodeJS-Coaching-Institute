@@ -21,7 +21,7 @@ routes.use(express.static(path.join(__dirname, '..', 'public')));
 routes.use('/manage-courses', manageCourseRoutes);
 routes.get('/add-course', adminController.getAddCourse);
 routes.get('/', adminController.getAdminHomePage);
-// routes.use(multer().single('coverImage'));
 routes.post('/add-course', multer({storage: coverImageStorage}).single('coverImage'), adminController.postAddCourse);
+routes.post('/delete', adminController.postDeleteCourse);
 
 module.exports = routes;

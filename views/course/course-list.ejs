@@ -25,9 +25,11 @@
                                 </div>
                                 <div class="col">
                                     <div style="text-align: right;">
-                                        <% if(session_data.mode=="admin" && session_data.isLoggedIn!=true) { %>
-                                            <a href="/admin/manage-courses/<%=course._id%>" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>  
+                                        <% if(session_data.mode=="admin" && session_data.isLoggedIn==true) { %>
+                                            <form method="POST" action="/admin/delete">
+                                                <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                                <input class="input" name="course_id" type="hidden" value="<%=course._id%>"> 
+                                            </form>
                                         <% } %>  
                                     </div>
                                 </div>
