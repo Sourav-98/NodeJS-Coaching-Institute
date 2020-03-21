@@ -185,8 +185,8 @@ exports.getMyCoursesPage = (req, res)=>{
 }
 
 exports.postRemoveFromCart = (req,res) => {
-    var idofcourse = req.body.course_id;
-    Student.updateOne({_id: req.session.user_id}, {"$pull":{"in_cart":idofcourse}}, (err, callback)=>{
+    var course_id = req.body.course_id;
+    Student.updateOne({_id: req.session.user_id}, {"$pull":{"in_cart":course_id}}, (err, callback)=>{
         if(err){
             console.log(err);
             res.redirect('/');
