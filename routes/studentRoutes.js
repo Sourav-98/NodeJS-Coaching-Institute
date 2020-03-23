@@ -14,5 +14,6 @@ routes.get('/cart', studentController.getCartPage);
 routes.post('/checkout',studentController.postCheckout);
 routes.get('/my-courses', studentController.getMyCoursesPage);
 routes.post('/delete',studentController.postRemoveFromCart);
+routes.post('/delete-course',studentController.postDeleteCourse)
 
 module.exports = routes;

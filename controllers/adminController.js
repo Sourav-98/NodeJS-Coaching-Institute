@@ -1,5 +1,6 @@
 // contains controllers for admin for managing the available courses
 const Course = require('./../models/courseModel');
+const Student = require('./../models/studentModel');
 
 exports.getAdminHomePage = (req, res)=>{
     if(req.session.mode=="admin" && req.session.isLoggedIn == true){
@@ -48,15 +49,43 @@ exports.postDeleteCourse = (req, res)=>{
         return res.redirect('/admin-login');
     }
     else{
-        var course_id = req.body.course_id;
+       let course_id = req.body.course_id;
+       console.log(course_id);
+       
         Course.deleteOne({_id: course_id}, (err, callback)=>{
             if(err){
                 res.redirect('/admin');
             }
             else{
-                res.redirect('/admin/manage-courses');
+                Student.find({}, (err,student)=>{
+                   
+                    console.log(student.length);
+                  //console.log(student);
+                    student.forEach(stud=> {
+                    console.log(stud._id);
+                    Student.updateMany({_id:stud._id},{"$pull":{"in_cart": {"$in":course_id},"enrolled_courses":{"$in": course_id}}},(err, callback)=>{
+                        if(err){
+                            console.log(err);
+                            res.redirect('/');
+                            return;
+                        }
+                        else{
+                            res.redirect('/admin/manage-courses');
+                        }
+                    });
+                   
+                        });
+                  
+                 // console.log(student);
+                });
+                
             }
         });
+
+        
+
+        
+
     }
 }
 
