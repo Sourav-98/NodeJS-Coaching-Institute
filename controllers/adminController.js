@@ -38,9 +38,8 @@ exports.postAddCourse = (req, res)=>{
             res.redirect('/admin/add-course');
         }
         else{
-            console.log('Entry Added!');
+            res.redirect('/admin');
         }
-        res.redirect('/admin');
     });
 }
 
@@ -49,43 +48,31 @@ exports.postDeleteCourse = (req, res)=>{
         return res.redirect('/admin-login');
     }
     else{
-       let course_id = req.body.course_id;
-       console.log(course_id);
-       
+        let course_id = req.body.course_id;
         Course.deleteOne({_id: course_id}, (err, callback)=>{
             if(err){
                 res.redirect('/admin');
             }
             else{
                 Student.find({}, (err,student)=>{
-                   
-                    console.log(student.length);
-                  //console.log(student);
-                    student.forEach(stud=> {
-                    console.log(stud._id);
-                    Student.updateMany({_id:stud._id},{"$pull":{"in_cart": {"$in":course_id},"enrolled_courses":{"$in": course_id}}},(err, callback)=>{
-                        if(err){
-                            console.log(err);
-                            res.redirect('/');
-                            return;
-                        }
-                        else{
-                            res.redirect('/admin/manage-courses');
-                        }
-                    });
-                   
+                    if(err){
+                        console.log(err);
+                        return res.redirect('/admin');
+                    }
+                    else{   
+                        student.forEach(stud=> {
+                            Student.updateMany({_id:stud._id},{"$pull":{"in_cart": {"$in":course_id},"enrolled_courses":{"$in": course_id}}},(err, callback)=>{
+                                if(err){
+                                    console.log(err);
+                                    return res.redirect('/'); 
+                                }
+                            });
                         });
-                  
-                 // console.log(student);
+                        res.redirect('/admin/manage-courses');
+                    }
                 });
-                
             }
         });
-
-        
-
-        
-
     }
 }
 
