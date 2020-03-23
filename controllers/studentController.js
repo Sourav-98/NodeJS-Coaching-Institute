@@ -117,6 +117,9 @@ exports.postAddToCartPage = (req, res)=>{
     }
 }
 
+exports.postDeleteCourse = (req,res) => {
+     console.log(student);
+}
 
 exports.postCheckout = ( req ,res) => {
     if(req.session.isLoggedIn != true && req.session.mode != "student"){
