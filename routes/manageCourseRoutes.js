@@ -4,6 +4,7 @@ const path = require('path');
 const multer = require('multer');
 
 const adminController = require('./../controllers/adminController');
+
 const coverImageStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
         cb(null, path.join('public', 'assets', 'coverImages'));

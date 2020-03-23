@@ -4,9 +4,7 @@ const routes = express.Router();
 const path = require('path');
 
 const courseRoutes = require('./courseRoutes');
-
 const studentController = require('./../controllers/studentController');
-// const authController = require('./../controllers/auth/authController');
 
 routes.use(express.static(path.join(__dirname, '..')));
 

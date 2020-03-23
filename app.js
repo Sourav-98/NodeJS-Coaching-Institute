@@ -10,24 +10,20 @@ const app = express();
 const AdminRoutes = require('./routes/adminRoutes');
 const StudentRoutes = require('./routes/studentRoutes');
 const AuthRoutes = require('./routes/authRoutes');
-const CourseRoutes = require('./routes/courseRoutes');
-
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({secret:'j2b3v543yb3hg43vu&%Gbv&IRFt5&^wqfoo9a8&G^FQ#VYCe', saveUninitialized: false, resave:false, useFindAndModify: false}));
 
 app.use(AuthRoutes);
 app.use(StudentRoutes);
 app.use('/admin', AdminRoutes);
-// app.use('/courses', CourseRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res)=>{
-    // res.render('student/home', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
     if(req.session.isLoggedIn !== true){
         res.render('index', {pageTitle: "courseRus.com", pagePath:"/", session_data: req.session});    // render a common index page
     }
@@ -37,7 +33,6 @@ app.get('/', (req, res)=>{
         }
         else{
             res.redirect('/admin');
-            // res.render('admin/home', {pageTitle: "Home", pagePath:"/home", session_data: req.session});
         }
     }
 });
