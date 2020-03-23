@@ -3,7 +3,9 @@ const routes = express.Router();
 const path = require('path');
 const multer = require('multer');
 
+const adminController = require('./../controllers/adminController');
 const manageCourseRoutes = require('./manageCourseRoutes');
+
 const coverImageStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
         cb(null, path.join('public', 'assets', 'coverImages'));
@@ -13,15 +15,12 @@ const coverImageStorage = multer.diskStorage({
     }
 });
 
-
-const adminController = require('./../controllers/adminController');
-
 routes.use(express.static(path.join(__dirname, '..', 'public')));
 
 routes.use('/manage-courses', manageCourseRoutes);
 routes.get('/add-course', adminController.getAddCourse);
-routes.get('/', adminController.getAdminHomePage);
 routes.post('/add-course', multer({storage: coverImageStorage}).single('coverImage'), adminController.postAddCourse);
 routes.post('/delete', adminController.postDeleteCourse);
+routes.get('/', adminController.getAdminHomePage);
 
 module.exports = routes;
