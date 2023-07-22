@@ -43,12 +43,11 @@ app.use((req, res)=>{
 
 app.listen(9000);
 
-mongoose.connect('mongodb+srv://sourav98:tCMmjBJqG12kDgZR@cluster0-12p2n.mongodb.net/test', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://courserus_mongo:27017/test', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
     console.log('Connected to Database!');
 
 })
 .catch((err)=>{
     console.log('Error in connecting to database!');
-    // console.log(err);
 });

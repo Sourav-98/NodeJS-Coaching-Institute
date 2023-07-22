@@ -1,0 +1,16 @@
+version: '2'
+services:
+  courserus_mongo:
+    container_name: courserus_mongo
+    image: mongo:latest
+    volumes:
+      - ./mongo_data/db:/data/db
+    ports:
+      - "27018:27017"
+  courserus:
+    container_name: courserus_app
+    build: .
+    ports:
+      - "9000:9000"
+    links:
+      - courserus_mongo
